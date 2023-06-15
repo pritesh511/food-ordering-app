@@ -1,4 +1,4 @@
-## This is food odering app
+## This is food ordering app
 
 ## package.json
 
