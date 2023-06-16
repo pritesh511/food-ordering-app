@@ -1,3 +1,28 @@
-#heading {
-  color: red;
+:root {
+  --yellow-color: #fc8019;
+  --white-color: #ffffff;
+  --light-gray: #686b78;
+  --dark-color: #000000;
+  --facebook-icon: #4267b2;
+  --twitter-icon: #00acee;
+  --linkdln-icon: #0a66c2;
+  --instagram-icon: #e4405f;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "DM Sans", sans-serif;
+}
+
+.container {
+  padding: 0 15px;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
