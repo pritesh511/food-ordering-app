@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./body.css";
 import Rescard from "../rescard/Rescard";
 import { RES_API_URL } from "../../utils/constant";
+import RescardSkelton from "../rescardSkelton/RescardSkelton";
 
 const Body = () => {
   const [reslist, setReslist] = useState([]);
@@ -15,6 +16,10 @@ const Body = () => {
     const resjson = await resdata.json();
     setReslist(resjson?.data?.cards[2]?.data?.data?.cards);
   };
+
+  if (reslist.length === 0) {
+    return <RescardSkelton />;
+  }
 
   return (
     <div className="body-wrapper">
