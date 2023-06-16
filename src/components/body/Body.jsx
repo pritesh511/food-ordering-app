@@ -1,14 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./body.css";
 import Rescard from "../rescard/Rescard";
-import { resdata } from "../../utils/mockData";
+import { RES_API_URL } from "../../utils/constant";
 
 const Body = () => {
+  const [reslist, setReslist] = useState([]);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    const resdata = await fetch(RES_API_URL);
+    const resjson = await resdata.json();
+    setReslist(resjson?.data?.cards[2]?.data?.data?.cards);
+  };
+
   return (
     <div className="body-wrapper">
       <div className="container">
         <div className="res-container">
-          {resdata.map((res) => {
+          {reslist.map((res) => {
             return <Rescard resdata={res} key={res.data.id} />;
           })}
         </div>
