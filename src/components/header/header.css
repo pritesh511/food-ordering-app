@@ -25,14 +25,16 @@
   display: flex;
   align-items: center;
 }
-.nav-item {
-  display: flex;
+.nav-item a {
+  display: inline-flex;
   align-items: center;
   margin: 0 14px;
   font-size: 16px;
+  color: var(--dark-color);
+  text-decoration: none;
   transition: 300ms all;
 }
-.nav-item:hover {
+.nav-item a:hover {
   color: var(--yellow-color);
   cursor: pointer;
 }
