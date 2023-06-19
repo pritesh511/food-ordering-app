@@ -1,5 +1,5 @@
 import React from "react";
-import { Home, Search } from "./pages";
+import { Home, Search, RestaurantMenu } from "./pages";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import { Footer, Header } from "./components";
 
@@ -22,6 +22,7 @@ const appRouter = createBrowserRouter([
     children: [
       { path: "/", element: <Home /> },
       { path: "/search", element: <Search /> },
+      { path: "/restaurant/:resId", element: <RestaurantMenu /> },
     ],
   },
 ]);
