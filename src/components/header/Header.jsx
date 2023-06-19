@@ -26,12 +26,12 @@ const Header = () => {
               <span className="nav-text">Help</span>
             </li>
             <li className="nav-item">
-              <UserOutlined />
-              <span className="nav-text">Sign in</span>
-            </li>
-            <li className="nav-item">
               <ShoppingCartOutlined />
               <span className="nav-text">Cart</span>
+            </li>
+            <li className="nav-item">
+              <UserOutlined />
+              <span className="nav-text">Sign in</span>
             </li>
           </ul>
         </div>

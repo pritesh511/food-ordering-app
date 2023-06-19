@@ -2,9 +2,10 @@
   "name": "food-app",
   "version": "1.0.0",
   "description": "This is food odering app, develop in react from scratch using parcel",
+  "main": "index.js",
   "scripts": {
-    "start": "parcel index.html",
-    "build": "parcel build index.html",
+    "start": "parcel src/index.html",
+    "build": "parcel build src/index.html",
     "test": "jest"
   },
   "keywords": [
@@ -15,12 +16,16 @@
   "author": "Pritesh Makasana",
   "license": "ISC",
   "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-plugin-module-resolver": "^5.0.0",
     "parcel": "^2.9.2",
     "parcel-bundler": "^1.12.5"
   },
   "dependencies": {
     "@ant-design/icons": "^5.1.4",
     "antd": "^5.6.1",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }

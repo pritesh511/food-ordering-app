@@ -17,11 +17,9 @@ const Body = () => {
     setReslist(resjson?.data?.cards[2]?.data?.data?.cards);
   };
 
-  if (reslist.length === 0) {
-    return <RescardSkelton />;
-  }
-
-  return (
+  return reslist.length === 0 ? (
+    <RescardSkelton />
+  ) : (
     <div className="body-wrapper">
       <div className="container">
         <div className="res-container">
