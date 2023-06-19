@@ -24,6 +24,10 @@
   max-width: 300px;
   color: var(--light-gray);
 }
+.ant-collapse-item {
+  margin: 0 0 20px 0;
+  background-color: white;
+}
 .res-header-right {
   padding: 6px;
 }
@@ -37,6 +41,13 @@
 }
 .res-header-rating .anticon-star {
   margin-right: 6px;
+}
+.ant-collapse {
+  background-color: var(--dark-white);
+  padding: 10px;
+}
+.ant-collapse-header {
+  padding: 20px 12px !important;
 }
 .ant-collapse-header-text {
   font-size: 18px;
