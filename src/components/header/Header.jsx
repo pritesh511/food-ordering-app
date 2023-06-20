@@ -33,13 +33,13 @@ const Header = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/search">
+              <Link to="/cart">
                 <ShoppingCartOutlined />
                 <span className="nav-text">Cart</span>
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/search">
+              <Link to="/login">
                 <UserOutlined />
                 <span className="nav-text">Sign in</span>
               </Link>

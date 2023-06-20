@@ -4,6 +4,8 @@ import { RES_MENU_API } from "../../utils/constant";
 import { useParams } from "react-router";
 import { StarFilled } from "@ant-design/icons";
 import "./restaurantMenu.css";
+import { BASE_IMG_URL } from "../../utils/constant";
+import MenuSkelton from "../../components/menuSkelton/MenuSkelton";
 
 const RestaurantMenu = () => {
   const [resMenuData, setResMenuData] = useState(null);
@@ -21,7 +23,7 @@ const RestaurantMenu = () => {
     setResMenuData(json);
   };
 
-  if (resMenuData === null) return <p>Loading....</p>;
+  if (resMenuData === null) return <MenuSkelton />;
 
   const resData = resMenuData?.data?.cards[0].card.card.info;
 
@@ -63,7 +65,9 @@ const RestaurantMenu = () => {
                       ? "red"
                       : "green"
                   }`}
-                ></div>
+                >
+                  <img src={BASE_IMG_URL + resData?.cloudinaryImageId} />
+                </div>
               </div>
             );
           }),
