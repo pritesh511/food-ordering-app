@@ -59,14 +59,14 @@ const RestaurantMenu = () => {
                   <h3>{item?.card?.info?.name}</h3>
                   <p>RS. {item?.card?.info?.price / 100}</p>
                 </div>
-                <div
-                  className={`food-img ${
-                    item?.card?.info?.itemAttribute?.vegClassifier === "NONVEG"
-                      ? "red"
-                      : "green"
-                  }`}
-                >
+                <div className="food-img">
                   <img src={BASE_IMG_URL + resData?.cloudinaryImageId} />
+                  {/* <div className="button-wrap">
+                    <span className="item-button">+</span>
+                    <span className="item-qty">1</span>
+                    <span className="item-button">-</span>
+                  </div> */}
+                  <div className="add-item-button">Add Item</div>
                 </div>
               </div>
             );

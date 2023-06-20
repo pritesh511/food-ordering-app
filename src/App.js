@@ -6,11 +6,13 @@ import { Footer, Header } from "./components";
 const AppLaout = () => {
   return (
     <>
-      <Header />
-      <div className="seprator">
-        <Outlet />
+      <div className="main-wrapper">
+        <Header />
+        <div className="seprator">
+          <Outlet />
+        </div>
+        <Footer />
       </div>
-      <Footer />
     </>
   );
 };
