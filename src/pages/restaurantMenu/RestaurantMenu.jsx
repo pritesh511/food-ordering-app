@@ -7,7 +7,7 @@ import "./restaurantMenu.css";
 import { BASE_IMG_URL } from "../../utils/constant";
 import MenuSkelton from "../../components/menuSkelton/MenuSkelton";
 import { useDispatch } from "react-redux";
-import { addTocart } from "../../redux/slices/cartslice";
+import { addTocart, setCurremtRestaurant } from "../../redux/slices/cartslice";
 
 const RestaurantMenu = () => {
   const [resMenuData, setResMenuData] = useState(null);
@@ -62,7 +62,7 @@ const RestaurantMenu = () => {
                   <p>RS. {item?.card?.info?.price / 100}</p>
                 </div>
                 <div className="food-img">
-                  <img src={BASE_IMG_URL + resData?.cloudinaryImageId} />
+                  <img src={BASE_IMG_URL + item?.card?.info?.imageId} />
                   {/* <div className="button-wrap">
                     <span className="item-button">+</span>
                     <span className="item-qty">1</span>
@@ -70,7 +70,10 @@ const RestaurantMenu = () => {
                   </div> */}
                   <div
                     className="add-item-button"
-                    onClick={() => dispatch(addTocart(item?.card?.info))}
+                    onClick={() => {
+                      dispatch(addTocart(item?.card?.info, resData));
+                      dispatch(setCurremtRestaurant(resData));
+                    }}
                   >
                     Add Item
                   </div>
