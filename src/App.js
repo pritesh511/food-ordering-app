@@ -2,6 +2,8 @@ import React from "react";
 import { Home, Search, RestaurantMenu, Login, Cart, Help } from "./pages";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import { Footer, Header } from "./components";
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
 
 const AppLaout = () => {
   return (
@@ -26,14 +28,18 @@ const appRouter = createBrowserRouter([
       { path: "/search", element: <Search /> },
       { path: "/login", element: <Login /> },
       { path: "/cart", element: <Cart /> },
-      { path: "/help", element: <Help /> },
+      { path: "/help", element: <Help name="Pritesh" /> },
       { path: "/restaurant/:resId", element: <RestaurantMenu /> },
     ],
   },
 ]);
 
 const App = () => {
-  return <RouterProvider router={appRouter} />;
+  return (
+    <Provider store={store}>
+      <RouterProvider router={appRouter} />
+    </Provider>
+  );
 };
 
 export default App;

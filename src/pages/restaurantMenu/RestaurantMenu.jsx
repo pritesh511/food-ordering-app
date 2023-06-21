@@ -6,10 +6,13 @@ import { StarFilled } from "@ant-design/icons";
 import "./restaurantMenu.css";
 import { BASE_IMG_URL } from "../../utils/constant";
 import MenuSkelton from "../../components/menuSkelton/MenuSkelton";
+import { useDispatch } from "react-redux";
+import { addTocart } from "../../redux/slices/cartslice";
 
 const RestaurantMenu = () => {
   const [resMenuData, setResMenuData] = useState(null);
   const params = useParams();
+  const dispatch = useDispatch();
 
   const { resId } = params;
 
@@ -29,7 +32,6 @@ const RestaurantMenu = () => {
 
   const food_item =
     resMenuData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards
-      .splice(1)
       .filter((item) => item?.card?.card?.itemCards !== undefined)
       .map((item, index) => {
         return {
@@ -66,7 +68,12 @@ const RestaurantMenu = () => {
                     <span className="item-qty">1</span>
                     <span className="item-button">-</span>
                   </div> */}
-                  <div className="add-item-button">Add Item</div>
+                  <div
+                    className="add-item-button"
+                    onClick={() => dispatch(addTocart(item?.card?.info))}
+                  >
+                    Add Item
+                  </div>
                 </div>
               </div>
             );

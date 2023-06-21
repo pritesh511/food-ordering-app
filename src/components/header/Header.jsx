@@ -8,8 +8,12 @@ import {
   GlobalOutlined,
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Header = () => {
+  const item_in_cart = useSelector((state) => state.cartslice.cart);
+  const qty_in_cart = item_in_cart.reduce((a, b) => a + b.qty, 0);
+
   return (
     <div className="header-wrapper">
       <div className="container">
@@ -36,6 +40,9 @@ const Header = () => {
               <Link to="/cart">
                 <ShoppingCartOutlined />
                 <span className="nav-text">Cart</span>
+                {qty_in_cart !== 0 && (
+                  <span className="cart-item-badge">{qty_in_cart}</span>
+                )}
               </Link>
             </li>
             <li className="nav-item">
