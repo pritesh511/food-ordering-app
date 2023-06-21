@@ -62,7 +62,13 @@ const RestaurantMenu = () => {
                   <p>RS. {item?.card?.info?.price / 100}</p>
                 </div>
                 <div className="food-img">
-                  <img src={BASE_IMG_URL + item?.card?.info?.imageId} />
+                  <img
+                    src={
+                      item?.card?.info?.imageId
+                        ? BASE_IMG_URL + item?.card?.info?.imageId
+                        : BASE_IMG_URL + resData?.cloudinaryImageId
+                    }
+                  />
                   {/* <div className="button-wrap">
                     <span className="item-button">+</span>
                     <span className="item-qty">1</span>
