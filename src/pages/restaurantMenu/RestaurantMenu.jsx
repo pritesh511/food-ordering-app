@@ -59,7 +59,7 @@ const RestaurantMenu = () => {
                     ></div>
                   </div>
                   <h3>{item?.card?.info?.name}</h3>
-                  <p>RS. {item?.card?.info?.price / 100}</p>
+                  <p>₹{item?.card?.info?.price / 100}</p>
                 </div>
                 <div className="food-img">
                   <img

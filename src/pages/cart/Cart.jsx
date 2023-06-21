@@ -12,7 +12,13 @@ const Cart = () => {
     (state) => state.cartslice.currentRestaurant
   );
 
-  console.log("cart_item", cart_item);
+  console.log("cart_item", currentRestaurant);
+  const delivery_fee = currentRestaurant?.feeDetails?.totalFee / 100;
+  const order_total = cart_item.reduce(
+    (a, item) => a + (item?.qty * item?.price) / 100,
+    0
+  );
+  const pay_amount = delivery_fee + order_total;
   const { cloudinaryImageId, name, city } = currentRestaurant;
 
   return cart_item.length <= 0 ? (
@@ -54,7 +60,9 @@ const Cart = () => {
                     </div>
                     <div className="cart-food-detail-right">
                       <p className="food-name">{item?.name}</p>
-                      <p className="cart-item-price">Rs. {item?.price / 100}</p>
+                      <p className="cart-item-price">
+                        ₹{(item?.price / 100) * item?.qty}
+                      </p>
                     </div>
                   </div>
                   <div className="cart-item-button-main">
@@ -79,7 +87,23 @@ const Cart = () => {
             })}
           </div>
         </div>
-        <div className="cart-checkout-box"></div>
+        <div className="cart-checkout-box">
+          <h2 className="bill-heading">Bill Details</h2>
+          <div className="order-charge">
+            <p>Item Total</p>
+            <p>₹{order_total}</p>
+          </div>
+          <div className="order-charge">
+            <p>Delivery Fee</p>
+            <p>₹{delivery_fee}</p>
+          </div>
+          <div className="order-seprate-line"></div>
+          <div className="order-total-block">
+            <p className="total-pay-text">To Pay</p>
+            <p className="total-pay-money">₹{pay_amount}</p>
+          </div>
+          <button className="place-order-button">Place Order</button>
+        </div>
       </div>
     </div>
   );

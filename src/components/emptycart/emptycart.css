@@ -19,7 +19,7 @@
 }
 .empty-cart-button {
   padding: 16px 12px;
-  border-radius: 4px;
+  border-radius: 6px;
   outline: none;
   border: none;
   text-decoration: none;
@@ -30,5 +30,5 @@
   transition: 300ms all;
 }
 .empty-cart-button:hover {
-  background-color: #dd6e12;
+  background-color: var(--dark-yellow-color);
 }

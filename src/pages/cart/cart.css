@@ -123,3 +123,59 @@
   font-size: 14px;
   color: var(--light-gray);
 }
+.bill-heading {
+  font-size: 20px;
+  line-height: 20px;
+  font-weight: 600;
+  color: var(--dark-color);
+  margin: 0 0 18px 0;
+}
+.order-charge {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 0 14px 0;
+}
+.order-charge p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--light-gray);
+}
+.order-seprate-line {
+  width: 100%;
+  height: 1px;
+  background-color: var(--dark-color);
+}
+.order-total-block {
+  margin: 16px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.total-pay-text {
+  font-size: 16px;
+  line-height: 16px;
+  font-weight: 600;
+  color: var(--dark-color);
+  margin: 0;
+}
+.total-pay-money {
+  margin: 0;
+  font-size: 14px;
+  color: var(--light-gray);
+}
+.place-order-button {
+  width: 100%;
+  padding: 16px 12px;
+  background-color: var(--yellow-color);
+  font-size: 16px;
+  color: var(--white-color);
+  text-align: center;
+  outline: none;
+  cursor: pointer;
+  border-radius: 6px;
+  border: none;
+}
+.place-order-button:hover {
+  background-color: var(--dark-yellow-color);
+}
