@@ -5,8 +5,37 @@ import { LeftCircleOutlined } from "@ant-design/icons";
 import banner from "../../assets/images/banner.jpg";
 import { Link } from "react-router-dom";
 import { LOGO_URL } from "../../utils/constant";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
 const Login = () => {
+  const loginSchema = Yup.object({
+    email: Yup.string()
+      .matches(
+        /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+        "Please enter valid email"
+      )
+      .required("Please enter email"),
+    password: Yup.string().min(8).required("Please enter password"),
+  });
+
+  const initialValues = {
+    email: "",
+    password: "",
+  };
+
+  const { values, handleChange, handleBlur, handleSubmit, touched, errors } =
+    useFormik({
+      initialValues: initialValues,
+      validationSchema: loginSchema,
+      onSubmit: (values, { resetForm }) => {
+        console.log(values);
+        resetForm({ values: "" });
+      },
+    });
+
+  console.log(touched);
+
   return (
     <div className="form-container">
       <Link to="/" className="back-icon">
@@ -14,29 +43,44 @@ const Login = () => {
         <span>Back</span>
       </Link>
       <div className="form-block">
-        <form className="login-form">
+        <form className="login-form" onSubmit={handleSubmit}>
           <img src={LOGO_URL} alt="logo" className="login-logo" />
           <div className="input-block">
-            <label className="input-label">Name:</label>
+            <label className="input-label">Email:</label>
             <input
               className="form-input"
               placeholder="Enter your email"
-              type="email"
+              type="text"
+              name="email"
+              value={values?.email}
+              onChange={handleChange}
+              onBlur={handleBlur}
             />
+            {errors?.email && touched?.email && (
+              <span className="form-error">{errors?.email}</span>
+            )}
           </div>
           <div className="input-block">
             <label className="input-label">Password:</label>
             <input
               className="form-input"
-              type="password"
+              type="text"
               placeholder="Enter your password"
+              name="password"
+              value={values?.password}
+              onChange={handleChange}
+              onBlur={handleBlur}
             />
+            {errors?.password && touched?.password && (
+              <span className="form-error">{errors?.password}</span>
+            )}
           </div>
-          <Button type="primary" className="login-submit-btn">
+          <button type="submit" className="login-submit-btn">
             Submit
-          </Button>
+          </button>
           <p className="form-bottom">
-            Dont have an account? <Link to="/">Create your account</Link>
+            Dont have an account?{" "}
+            <Link to="/register">Create your account</Link>
           </p>
         </form>
       </div>

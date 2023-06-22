@@ -1,5 +1,13 @@
 import React from "react";
-import { Home, Search, RestaurantMenu, Login, Cart, Help } from "./pages";
+import {
+  Home,
+  Search,
+  RestaurantMenu,
+  Login,
+  Cart,
+  Help,
+  Register,
+} from "./pages";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import { Footer, Header } from "./components";
 import { Provider } from "react-redux";
@@ -32,6 +40,7 @@ const appRouter = createBrowserRouter([
     ],
   },
   { path: "/login", element: <Login /> },
+  { path: "/register", element: <Register /> },
 ]);
 
 const App = () => {
