@@ -26,12 +26,12 @@ const appRouter = createBrowserRouter([
     children: [
       { path: "/", element: <Home /> },
       { path: "/search", element: <Search /> },
-      { path: "/login", element: <Login /> },
       { path: "/cart", element: <Cart /> },
       { path: "/help", element: <Help name="Pritesh" /> },
       { path: "/restaurant/:resId", element: <RestaurantMenu /> },
     ],
   },
+  { path: "/login", element: <Login /> },
 ]);
 
 const App = () => {
