@@ -1,4 +1,3 @@
-import { Button } from "antd";
 import React from "react";
 import "./login.css";
 import { LeftCircleOutlined } from "@ant-design/icons";
@@ -7,8 +6,14 @@ import { Link } from "react-router-dom";
 import { LOGO_URL } from "../../utils/constant";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { useSelector } from "react-redux";
+import { message } from "antd";
 
 const Login = () => {
+  const [messageApi, contextHolder] = message.useMessage();
+
+  const user_data = useSelector((state) => state.userslice.userdata);
+
   const loginSchema = Yup.object({
     email: Yup.string()
       .matches(
@@ -29,65 +34,84 @@ const Login = () => {
       initialValues: initialValues,
       validationSchema: loginSchema,
       onSubmit: (values, { resetForm }) => {
-        console.log(values);
+        const isUser = user_data.findIndex(
+          (user) =>
+            user?.email === values?.email && user?.password === values?.password
+        );
+        if (isUser === -1) {
+          messageApi.open({
+            type: "error",
+            content: "Account not fount",
+            duration: 2,
+          });
+        } else {
+          messageApi.open({
+            type: "success",
+            content: "Login successfully",
+            duration: 2,
+          });
+        }
         resetForm({ values: "" });
       },
     });
 
-  console.log(touched);
-
   return (
-    <div className="form-container">
-      <Link to="/" className="back-icon">
-        <LeftCircleOutlined />
-        <span>Back</span>
-      </Link>
-      <div className="form-block">
-        <form className="login-form" onSubmit={handleSubmit}>
-          <img src={LOGO_URL} alt="logo" className="login-logo" />
-          <div className="input-block">
-            <label className="input-label">Email:</label>
-            <input
-              className="form-input"
-              placeholder="Enter your email"
-              type="text"
-              name="email"
-              value={values?.email}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            {errors?.email && touched?.email && (
-              <span className="form-error">{errors?.email}</span>
-            )}
-          </div>
-          <div className="input-block">
-            <label className="input-label">Password:</label>
-            <input
-              className="form-input"
-              type="text"
-              placeholder="Enter your password"
-              name="password"
-              value={values?.password}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            {errors?.password && touched?.password && (
-              <span className="form-error">{errors?.password}</span>
-            )}
-          </div>
-          <button type="submit" className="login-submit-btn">
-            Submit
-          </button>
-          <p className="form-bottom">
-            Dont have an account?{" "}
-            <Link to="/register">Create your account</Link>
-          </p>
-        </form>
+    <>
+      {contextHolder}
+      <div className="form-container">
+        <Link to="/" className="back-icon">
+          <LeftCircleOutlined />
+          <span>Back</span>
+        </Link>
+        <div className="form-block">
+          <form className="login-form" onSubmit={handleSubmit}>
+            <img src={LOGO_URL} alt="logo" className="login-logo" />
+            <div className="input-block">
+              <label className="input-label">Email:</label>
+              <input
+                className="form-input"
+                placeholder="Enter your email"
+                type="text"
+                name="email"
+                autoComplete="off"
+                value={values?.email}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              {errors?.email && touched?.email && (
+                <span className="form-error">{errors?.email}</span>
+              )}
+            </div>
+            <div className="input-block">
+              <label className="input-label">Password:</label>
+              <input
+                className="form-input"
+                type="text"
+                autoComplete="off"
+                placeholder="Enter your password"
+                name="password"
+                value={values?.password}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              {errors?.password && touched?.password && (
+                <span className="form-error">{errors?.password}</span>
+              )}
+            </div>
+            <button type="submit" className="login-submit-btn">
+              Submit
+            </button>
+            <p className="form-bottom">
+              Dont have an account?{" "}
+              <Link to="/register">Create your account</Link>
+            </p>
+          </form>
+        </div>
+        <div className="banner-block">
+          <img src={banner} alt="banner-image" />
+        </div>
       </div>
-      <div className="banner-block">
-        <img src={banner} alt="banner-image" />
-      </div>
-    </div>
+    </>
   );
 };
 
