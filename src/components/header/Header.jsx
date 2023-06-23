@@ -11,8 +11,12 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const Header = () => {
-  const item_in_cart = useSelector((state) => state.cartslice.cart);
+  const item_in_cart = useSelector((state) => state?.cartslice?.cart);
   const qty_in_cart = item_in_cart.reduce((a, b) => a + b.qty, 0);
+
+  const current_user_login = useSelector(
+    (state) => state?.userslice?.currentLoginUser
+  );
 
   return (
     <div className="header-wrapper">
@@ -45,12 +49,18 @@ const Header = () => {
                 )}
               </Link>
             </li>
-            <li className="nav-item">
-              <Link to="/login">
-                <UserOutlined />
-                <span className="nav-text">Sign in</span>
-              </Link>
-            </li>
+            {current_user_login ? (
+              <li className="nav-item">
+                <div className="login-user">{current_user_login?.name[0]}</div>
+              </li>
+            ) : (
+              <li className="nav-item">
+                <Link to="/login">
+                  <UserOutlined />
+                  <span className="nav-text">Sign in</span>
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
       </div>

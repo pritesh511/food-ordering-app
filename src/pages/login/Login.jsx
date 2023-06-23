@@ -6,11 +6,15 @@ import { Link } from "react-router-dom";
 import { LOGO_URL } from "../../utils/constant";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { message } from "antd";
+import { useNavigate } from "react-router-dom";
+import { setCurrentUser } from "../../redux/slices/userslice";
 
 const Login = () => {
   const [messageApi, contextHolder] = message.useMessage();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const user_data = useSelector((state) => state.userslice.userdata);
 
@@ -41,15 +45,12 @@ const Login = () => {
         if (isUser === -1) {
           messageApi.open({
             type: "error",
-            content: "Account not fount",
+            content: "Account not found",
             duration: 2,
           });
         } else {
-          messageApi.open({
-            type: "success",
-            content: "Login successfully",
-            duration: 2,
-          });
+          dispatch(setCurrentUser(values));
+          navigate("/");
         }
         resetForm({ values: "" });
       },

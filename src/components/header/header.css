@@ -53,3 +53,15 @@
 .nav-text {
   margin: 0 0 0 5px;
 }
+.login-user {
+  height: 30px;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--yellow-color);
+  border-radius: 50%;
+  margin: 0 0 0 10px;
+  cursor: pointer;
+  color: var(--white-color);
+}

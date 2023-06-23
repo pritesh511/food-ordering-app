@@ -1,13 +1,23 @@
 import React from "react";
 import "./register.css";
 import banner from "../../assets/images/banner.jpg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { LeftCircleOutlined } from "@ant-design/icons";
 import { LOGO_URL } from "../../utils/constant";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { useSelector, useDispatch } from "react-redux";
+import { message } from "antd";
+import { addUser } from "../../redux/slices/userslice";
+import { v4 as uuidv4 } from "uuid";
 
 const Register = () => {
+  const [messageApi, contextHolder] = message.useMessage();
+  const dispatch = useDispatch();
+  const user_data = useSelector((state) => state.userslice.userdata);
+  const formUniqueID = uuidv4();
+  const navigate = useNavigate();
+
   const initialValues = {
     name: "",
     email: "",
@@ -41,92 +51,108 @@ const Register = () => {
       initialValues: initialValues,
       validationSchema: registerSchema,
       onSubmit: (values, { resetForm }) => {
-        console.log(values);
-        resetForm({ values: "" });
+        const isUser = user_data.findIndex(
+          (user) =>
+            user?.email === values?.email && user?.password === values?.password
+        );
+        if (isUser === -1) {
+          dispatch(addUser({ ...values, id: formUniqueID }));
+          resetForm({ values: "" });
+          navigate("/login");
+        } else {
+          messageApi.open({
+            type: "error",
+            content: "Email already has been taken",
+            duration: 2,
+          });
+        }
       },
     });
 
   return (
-    <div className="form-container">
-      <Link to="/" className="back-icon">
-        <LeftCircleOutlined />
-        <span>Back</span>
-      </Link>
-      <div className="form-block">
-        <form className="login-form" onSubmit={handleSubmit}>
-          <img src={LOGO_URL} alt="logo" className="login-logo" />
-          <div className="input-block">
-            <label className="input-label">Name :</label>
-            <input
-              className="form-input"
-              placeholder="Enter your name"
-              type="text"
-              name="name"
-              value={values?.name}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            {errors?.name && touched?.name && (
-              <span className="form-error">{errors?.name}</span>
-            )}
-          </div>
-          <div className="input-block">
-            <label className="input-label">Email :</label>
-            <input
-              className="form-input"
-              placeholder="Enter your email"
-              type="text"
-              name="email"
-              value={values?.email}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            {errors?.email && touched?.email && (
-              <span className="form-error">{errors?.email}</span>
-            )}
-          </div>
-          <div className="input-block">
-            <label className="input-label">Password :</label>
-            <input
-              className="form-input"
-              placeholder="Enter your password"
-              type="text"
-              name="password"
-              value={values?.password}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            {errors?.password && touched?.password && (
-              <span className="form-error">{errors?.password}</span>
-            )}
-          </div>
-          <div className="input-block">
-            <label className="input-label">Confirm Password :</label>
-            <input
-              className="form-input"
-              placeholder="Enter your confirm password"
-              type="text"
-              name="confirm_password"
-              value={values?.confirm_password}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            {errors?.confirm_password && touched?.confirm_password && (
-              <span className="form-error">{errors?.confirm_password}</span>
-            )}
-          </div>
-          <button type="submit" className="login-submit-btn">
-            Submit
-          </button>
-          <p className="form-bottom">
-            Already have account? <Link to="/login">Login</Link>
-          </p>
-        </form>
+    <>
+      {contextHolder}
+      <div className="form-container">
+        <Link to="/" className="back-icon">
+          <LeftCircleOutlined />
+          <span>Back</span>
+        </Link>
+        <div className="form-block">
+          <form className="login-form" onSubmit={handleSubmit}>
+            <img src={LOGO_URL} alt="logo" className="login-logo" />
+            <div className="input-block">
+              <label className="input-label">Name :</label>
+              <input
+                className="form-input"
+                placeholder="Enter your name"
+                type="text"
+                name="name"
+                value={values?.name}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              {errors?.name && touched?.name && (
+                <span className="form-error">{errors?.name}</span>
+              )}
+            </div>
+            <div className="input-block">
+              <label className="input-label">Email :</label>
+              <input
+                className="form-input"
+                placeholder="Enter your email"
+                type="text"
+                name="email"
+                value={values?.email}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              {errors?.email && touched?.email && (
+                <span className="form-error">{errors?.email}</span>
+              )}
+            </div>
+            <div className="input-block">
+              <label className="input-label">Password :</label>
+              <input
+                className="form-input"
+                placeholder="Enter your password"
+                type="text"
+                name="password"
+                value={values?.password}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              {errors?.password && touched?.password && (
+                <span className="form-error">{errors?.password}</span>
+              )}
+            </div>
+            <div className="input-block">
+              <label className="input-label">Confirm Password :</label>
+              <input
+                className="form-input"
+                placeholder="Enter your confirm password"
+                type="text"
+                name="confirm_password"
+                value={values?.confirm_password}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              {errors?.confirm_password && touched?.confirm_password && (
+                <span className="form-error">{errors?.confirm_password}</span>
+              )}
+            </div>
+            <button type="submit" className="login-submit-btn">
+              Submit
+            </button>
+            <p className="form-bottom">
+              Already have account? <Link to="/login">Login</Link>
+            </p>
+          </form>
+        </div>
+        <div className="banner-block">
+          <img src={banner} alt="banner-image" />
+        </div>
       </div>
-      <div className="banner-block">
-        <img src={banner} alt="banner-image" />
-      </div>
-    </div>
+    </>
   );
 };
 
