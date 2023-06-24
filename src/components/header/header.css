@@ -65,3 +65,18 @@
   cursor: pointer;
   color: var(--white-color);
 }
+.menu-wrapper {
+  min-width: 120px;
+}
+.menu-link {
+  padding: 6px 8px;
+  font-size: 15px;
+  display: block;
+  border-radius: 4px;
+  color: var(--dark-color);
+  transition: 300ms all;
+}
+.menu-link:hover {
+  background-color: var(--yellow-color);
+  color: var(--white-color);
+}
