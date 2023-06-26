@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { LOGO_URL } from "../../utils/constant";
 import "./header.css";
 import {
@@ -12,6 +12,7 @@ import { useSelector } from "react-redux";
 import { Button, Popover } from "antd";
 
 const Header = () => {
+  const [menuVisible, setMenuVisible] = useState(false);
   const item_in_cart = useSelector((state) => state?.cartslice?.cart);
   const qty_in_cart = item_in_cart.reduce((a, b) => a + b.qty, 0);
 
@@ -88,8 +89,11 @@ const Header = () => {
                     placement="bottomRight"
                     content={content}
                     trigger="click"
+                    visible={menuVisible}
                   >
-                    <Button>{current_user_login?.name[0]}</Button>
+                    <Button onClick={() => setMenuVisible(true)}>
+                      {current_user_login?.name[0]}
+                    </Button>
                   </Popover>
                 </li>
               ) : (
