@@ -9,10 +9,10 @@ import {
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { Button, Popover } from "antd";
+import { Drawer } from "antd";
 
 const Header = () => {
-  const [menuVisible, setMenuVisible] = useState(false);
+  const [open, setOpen] = useState(false);
   const item_in_cart = useSelector((state) => state?.cartslice?.cart);
   const qty_in_cart = item_in_cart.reduce((a, b) => a + b.qty, 0);
 
@@ -20,35 +20,13 @@ const Header = () => {
     (state) => state?.userslice?.currentLoginUser
   );
 
-  const content = (
-    <ul className="menu-wrapper">
-      <li className="menu-link-item">
-        <Link to="/" className="menu-link">
-          Profile
-        </Link>
-      </li>
-      <li className="menu-link-item">
-        <Link to="/" className="menu-link">
-          Orders
-        </Link>
-      </li>
-      <li className="menu-link-item">
-        <Link to="/" className="menu-link">
-          Setting
-        </Link>
-      </li>
-      <li className="menu-link-item">
-        <Link to="/" className="menu-link">
-          FAQ
-        </Link>
-      </li>
-      <li className="menu-link-item">
-        <Link to="/" className="menu-link">
-          Logout
-        </Link>
-      </li>
-    </ul>
-  );
+  const showDrawer = () => {
+    setOpen(true);
+  };
+
+  const onClose = () => {
+    setOpen(false);
+  };
 
   return (
     <>
@@ -84,17 +62,9 @@ const Header = () => {
               </li>
               {current_user_login ? (
                 <li className="nav-item">
-                  <Popover
-                    className="login-user"
-                    placement="bottomRight"
-                    content={content}
-                    trigger="click"
-                    visible={menuVisible}
-                  >
-                    <Button onClick={() => setMenuVisible(true)}>
-                      {current_user_login?.name[0]}
-                    </Button>
-                  </Popover>
+                  <div className="login-user" onClick={showDrawer}>
+                    {current_user_login?.name[0].toUpperCase()}
+                  </div>
                 </li>
               ) : (
                 <li className="nav-item">
@@ -108,6 +78,18 @@ const Header = () => {
           </div>
         </div>
       </div>
+      <Drawer
+        title="Working Progress..."
+        placement="right"
+        closable={false}
+        onClose={onClose}
+        open={open}
+        key="right"
+      >
+        <p>Working Progress...</p>
+        <p>Working Progress...</p>
+        <p>Working Progress...</p>
+      </Drawer>
     </>
   );
 };

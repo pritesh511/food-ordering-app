@@ -1,6 +1,6 @@
 .header-wrapper {
   position: fixed;
-  width: 100%;
+  width: 100vw;
   box-shadow: 0 15px 40px -20px rgba(40, 44, 63, 0.15);
   background: var(--white-color);
   z-index: 999;
