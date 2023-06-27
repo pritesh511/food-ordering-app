@@ -3,7 +3,9 @@ import { userData } from "../../utils/userMockData";
 
 const initialState = {
   userdata: userData,
-  currentLoginUser: null,
+  currentLoginUser: {
+    name: "Pritesh Makasana",
+  },
 };
 
 const userslice = createSlice({

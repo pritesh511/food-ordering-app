@@ -61,7 +61,7 @@ const Cart = () => {
                     <div className="cart-food-detail-right">
                       <p className="food-name">{item?.name}</p>
                       <p className="cart-item-price">
-                        ₹{(item?.price / 100) * item?.qty}
+                        ₹{Math.trunc((item?.price / 100) * item?.qty)}
                       </p>
                     </div>
                   </div>
@@ -91,7 +91,7 @@ const Cart = () => {
           <h2 className="bill-heading">Bill Details</h2>
           <div className="order-charge">
             <p>Item Total</p>
-            <p>₹{order_total}</p>
+            <p>₹{Math.trunc(order_total)}</p>
           </div>
           <div className="order-charge">
             <p>Delivery Fee</p>
@@ -100,7 +100,7 @@ const Cart = () => {
           <div className="order-seprate-line"></div>
           <div className="order-total-block">
             <p className="total-pay-text">To Pay</p>
-            <p className="total-pay-money">₹{pay_amount}</p>
+            <p className="total-pay-money">₹{Math.trunc(pay_amount)}</p>
           </div>
           <button className="place-order-button">Place Order</button>
         </div>

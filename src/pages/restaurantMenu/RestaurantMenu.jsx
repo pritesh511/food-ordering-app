@@ -6,13 +6,20 @@ import { StarFilled } from "@ant-design/icons";
 import "./restaurantMenu.css";
 import { BASE_IMG_URL } from "../../utils/constant";
 import MenuSkelton from "../../components/menuSkelton/MenuSkelton";
-import { useDispatch } from "react-redux";
-import { addTocart, setCurremtRestaurant } from "../../redux/slices/cartslice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addTocart,
+  setCurremtRestaurant,
+  removeFromcart,
+} from "../../redux/slices/cartslice";
 
 const RestaurantMenu = () => {
   const [resMenuData, setResMenuData] = useState(null);
   const params = useParams();
   const dispatch = useDispatch();
+
+  const cart_Item = useSelector((state) => state.cartslice.cart);
+  console.log("cart_Item", cart_Item);
 
   const { resId } = params;
 
@@ -38,6 +45,15 @@ const RestaurantMenu = () => {
           key: `${index + 1}`,
           label: `${item?.card?.card?.title} (${item?.card?.card?.itemCards.length})`,
           children: item?.card?.card?.itemCards.map((item) => {
+            const item_data = cart_Item?.find(
+              (food) => food.id === item?.card?.info?.id
+            );
+            const in_cart_item = item_data?.qty;
+            if (in_cart_item) {
+              item.card.info["qty"] = in_cart_item;
+            } else {
+              item.card.info["qty"] = 0;
+            }
             return (
               <div className="res-item-card" key={item?.card?.info?.id}>
                 <div className="res-item-card-left">
@@ -69,20 +85,35 @@ const RestaurantMenu = () => {
                         : BASE_IMG_URL + resData?.cloudinaryImageId
                     }
                   />
-                  {/* <div className="button-wrap">
-                    <span className="item-button">+</span>
-                    <span className="item-qty">1</span>
-                    <span className="item-button">-</span>
-                  </div> */}
-                  <div
-                    className="add-item-button"
-                    onClick={() => {
-                      dispatch(addTocart(item?.card?.info, resData));
-                      dispatch(setCurremtRestaurant(resData));
-                    }}
-                  >
-                    Add Item
-                  </div>
+                  {item?.card?.info?.qty ? (
+                    <div className="button-wrap">
+                      <span
+                        className="item-button"
+                        onClick={() => dispatch(addTocart(item?.card?.info))}
+                      >
+                        +
+                      </span>
+                      <span className="item-qty">{item?.card?.info?.qty}</span>
+                      <span
+                        className="item-button"
+                        onClick={() =>
+                          dispatch(removeFromcart(item?.card?.info))
+                        }
+                      >
+                        -
+                      </span>
+                    </div>
+                  ) : (
+                    <div
+                      className="add-item-button"
+                      onClick={() => {
+                        dispatch(addTocart(item?.card?.info));
+                        dispatch(setCurremtRestaurant(resData));
+                      }}
+                    >
+                      Add Item
+                    </div>
+                  )}
                 </div>
               </div>
             );

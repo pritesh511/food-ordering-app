@@ -9,10 +9,10 @@ import {
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { Drawer } from "antd";
+import Drawerbar from "../drawerbar/Drawerbar";
 
 const Header = () => {
-  const [open, setOpen] = useState(false);
+  const [openDrawer, setOpenDrawer] = useState(false);
   const item_in_cart = useSelector((state) => state?.cartslice?.cart);
   const qty_in_cart = item_in_cart.reduce((a, b) => a + b.qty, 0);
 
@@ -21,11 +21,11 @@ const Header = () => {
   );
 
   const showDrawer = () => {
-    setOpen(true);
+    setOpenDrawer(true);
   };
 
   const onClose = () => {
-    setOpen(false);
+    setOpenDrawer(false);
   };
 
   return (
@@ -78,18 +78,7 @@ const Header = () => {
           </div>
         </div>
       </div>
-      <Drawer
-        title="Working Progress..."
-        placement="right"
-        closable={false}
-        onClose={onClose}
-        open={open}
-        key="right"
-      >
-        <p>Working Progress...</p>
-        <p>Working Progress...</p>
-        <p>Working Progress...</p>
-      </Drawer>
+      <Drawerbar onClose={onClose} openDrawer={openDrawer} />
     </>
   );
 };
