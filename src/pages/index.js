@@ -5,5 +5,6 @@ import Login from "./login/Login";
 import Cart from "./cart/Cart";
 import Help from "./help/Help";
 import Register from "./register/Register";
+import Admin from "./admin/Admin";
 
-export { Home, Search, RestaurantMenu, Login, Cart, Help, Register };
+export { Home, Search, RestaurantMenu, Login, Cart, Help, Register, Admin };

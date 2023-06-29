@@ -7,7 +7,7 @@ import {
   ShoppingCartOutlined,
   GlobalOutlined,
 } from "@ant-design/icons";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Drawerbar from "../drawerbar/Drawerbar";
 
@@ -34,31 +34,31 @@ const Header = () => {
         <div className="container">
           <div className="header">
             <div className="nav-logo">
-              <Link to="/">
+              <NavLink to="/" activeclassname="active">
                 <img src={LOGO_URL} alt="app-logo" />
-              </Link>
+              </NavLink>
             </div>
             <ul className="nav-list">
               <li className="nav-item">
-                <Link to="/search">
+                <NavLink to="/search" activeclassname="active">
                   <SearchOutlined />
                   <span className="nav-text">Search</span>
-                </Link>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <Link to="/help">
+                <NavLink to="/help" activeclassname="active">
                   <GlobalOutlined />
                   <span className="nav-text">Help</span>
-                </Link>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <Link to="/cart">
+                <NavLink to="/cart" activeclassname="active">
                   <ShoppingCartOutlined />
                   <span className="nav-text">Cart</span>
                   {qty_in_cart !== 0 && (
                     <span className="cart-item-badge">{qty_in_cart}</span>
                   )}
-                </Link>
+                </NavLink>
               </li>
               {current_user_login ? (
                 <li className="nav-item">
@@ -68,10 +68,10 @@ const Header = () => {
                 </li>
               ) : (
                 <li className="nav-item">
-                  <Link to="/login">
+                  <NavLink to="/login" activeclassname="active">
                     <UserOutlined />
                     <span className="nav-text">Sign in</span>
-                  </Link>
+                  </NavLink>
                 </li>
               )}
             </ul>

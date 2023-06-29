@@ -7,11 +7,13 @@ import {
   Cart,
   Help,
   Register,
+  Admin,
 } from "./pages";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import { Footer, Header } from "./components";
 import { Provider } from "react-redux";
-import { store } from "./redux/store";
+import { PersistGate } from "redux-persist/integration/react";
+import { store, persistor } from "./redux/store";
 
 const AppLaout = () => {
   return (
@@ -35,7 +37,8 @@ const appRouter = createBrowserRouter([
       { path: "/", element: <Home /> },
       { path: "/search", element: <Search /> },
       { path: "/cart", element: <Cart /> },
-      { path: "/help", element: <Help name="Pritesh" /> },
+      { path: "/admin", element: <Admin /> },
+      { path: "/help", element: <Help /> },
       { path: "/restaurant/:resId", element: <RestaurantMenu /> },
     ],
   },
@@ -46,7 +49,9 @@ const appRouter = createBrowserRouter([
 const App = () => {
   return (
     <Provider store={store}>
-      <RouterProvider router={appRouter} />
+      <PersistGate loading={null} persistor={persistor}>
+        <RouterProvider router={appRouter} />
+      </PersistGate>
     </Provider>
   );
 };

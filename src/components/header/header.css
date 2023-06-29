@@ -50,6 +50,9 @@
   color: var(--yellow-color);
   cursor: pointer;
 }
+.nav-item .active {
+  color: var(--yellow-color);
+}
 .nav-text {
   margin: 0 0 0 5px;
 }

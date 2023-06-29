@@ -1,8 +1,8 @@
 import React from "react";
 import { Drawer } from "antd";
 import "./drawerbar.css";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { Link, NavLink } from "react-router-dom";
 import {
   UserOutlined,
   HomeOutlined,
@@ -13,9 +13,12 @@ import {
   RightCircleOutlined,
   LogoutOutlined,
 } from "@ant-design/icons";
+import { logout } from "../../redux/slices/userslice";
 
 const Drawerbar = (props) => {
   const { openDrawer, onClose } = props;
+  const dispatch = useDispatch();
+
   const currentUser = useSelector((state) => state.userslice.currentLoginUser);
   return (
     <>
@@ -32,43 +35,54 @@ const Drawerbar = (props) => {
           <p className="drawer-name">{currentUser?.name}</p>
         </div>
         <ul className="drawer-menu-list">
-          <li className="drawer-menu-item">
-            <Link to="/">
+          <li className="drawer-menu-item" onClick={() => onClose()}>
+            <NavLink to="/" activeclassname="active">
               <HomeOutlined />
               <span>Dashboard</span>
-            </Link>
+            </NavLink>
           </li>
-          <li className="drawer-menu-item">
+          <li className="drawer-menu-item" onClick={() => onClose()}>
+            <NavLink to="/admin" activeclassname="active">
+              <HomeOutlined />
+              <span>Admin</span>
+            </NavLink>
+          </li>
+          <li className="drawer-menu-item" onClick={() => onClose()}>
             <Link to="/">
               <UserOutlined />
               <span>Profile</span>
             </Link>
           </li>
-          <li className="drawer-menu-item">
+          <li className="drawer-menu-item" onClick={() => onClose()}>
             <Link to="/">
               <RadarChartOutlined />
               <span>Offers</span>
             </Link>
           </li>
-          <li className="drawer-menu-item">
+          <li className="drawer-menu-item" onClick={() => onClose()}>
             <Link to="/">
               <SettingOutlined />
               <span>Setting</span>
             </Link>
           </li>
-          <li className="drawer-menu-item">
+          <li className="drawer-menu-item" onClick={() => onClose()}>
             <Link to="/">
               <DribbbleOutlined />
               <span>My Orders</span>
             </Link>
           </li>
-          <li className="drawer-menu-item">
-            <Link to="/">
+          <li className="drawer-menu-item" onClick={() => onClose()}>
+            <NavLink to="/help" activeclassname="active">
               <CommentOutlined />
               <span>Help & Faq</span>
-            </Link>
+            </NavLink>
           </li>
-          <li className="drawer-menu-item">
+          <li
+            className="drawer-menu-item"
+            onClick={() => {
+              onClose(), dispatch(logout());
+            }}
+          >
             <Link to="/">
               <LogoutOutlined />
               <span>Logout</span>

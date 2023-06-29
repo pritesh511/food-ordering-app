@@ -12,10 +12,10 @@ const Cart = () => {
     (state) => state.cartslice.currentRestaurant
   );
 
-  console.log("cart_item", currentRestaurant);
   const delivery_fee = currentRestaurant?.feeDetails?.totalFee / 100;
   const order_total = cart_item.reduce(
-    (a, item) => a + (item?.qty * item?.price) / 100,
+    (a, item) =>
+      a + (item?.qty * item?.price ? item?.price : item?.defaultPrice) / 100,
     0
   );
   const pay_amount = delivery_fee + order_total;
@@ -61,7 +61,12 @@ const Cart = () => {
                     <div className="cart-food-detail-right">
                       <p className="food-name">{item?.name}</p>
                       <p className="cart-item-price">
-                        ₹{Math.trunc((item?.price / 100) * item?.qty)}
+                        ₹
+                        {Math.trunc(
+                          parseInt(
+                            item?.price ? item?.price : item?.defaultPrice / 100
+                          ) * item?.qty
+                        )}
                       </p>
                     </div>
                   </div>

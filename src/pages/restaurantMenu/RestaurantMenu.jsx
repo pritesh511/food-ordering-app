@@ -19,7 +19,6 @@ const RestaurantMenu = () => {
   const dispatch = useDispatch();
 
   const cart_Item = useSelector((state) => state.cartslice.cart);
-  console.log("cart_Item", cart_Item);
 
   const { resId } = params;
 

@@ -21,7 +21,6 @@ const cartslice = createSlice({
       const isItems = state.cart.find(
         (item) => item?.id === action?.payload?.id
       );
-      console.log("isItems", isItems);
       if (isItems) {
         if (isItems.qty > 1) {
           isItems.qty--;
