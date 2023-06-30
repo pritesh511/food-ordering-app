@@ -4,10 +4,15 @@ import { BASE_IMG_URL } from "../../utils/constant";
 import { useSelector, useDispatch } from "react-redux";
 import { EmptyCart } from "../../components";
 import { addTocart, removeFromcart } from "../../redux/slices/cartslice";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const cart_item = useSelector((state) => state.cartslice.cart);
+  const current_login_user = useSelector(
+    (state) => state.userslice.currentLoginUser
+  );
   const currentRestaurant = useSelector(
     (state) => state.cartslice.currentRestaurant
   );
@@ -20,6 +25,15 @@ const Cart = () => {
   );
   const pay_amount = delivery_fee + order_total;
   const { cloudinaryImageId, name, city } = currentRestaurant;
+
+  const handlePlaceOrder = () => {
+    console.log("call");
+    if (current_login_user === null) {
+      navigate("/login");
+    } else {
+      navigate("/payment");
+    }
+  };
 
   return cart_item.length <= 0 ? (
     <EmptyCart />
@@ -64,7 +78,8 @@ const Cart = () => {
                         ₹
                         {Math.trunc(
                           parseInt(
-                            item?.price ? item?.price : item?.defaultPrice / 100
+                            (item?.price ? item?.price : item?.defaultPrice) /
+                              100
                           ) * item?.qty
                         )}
                       </p>
@@ -107,7 +122,12 @@ const Cart = () => {
             <p className="total-pay-text">To Pay</p>
             <p className="total-pay-money">₹{Math.trunc(pay_amount)}</p>
           </div>
-          <button className="place-order-button">Place Order</button>
+          <button
+            className="place-order-button"
+            onClick={() => handlePlaceOrder()}
+          >
+            Place Order
+          </button>
         </div>
       </div>
     </div>

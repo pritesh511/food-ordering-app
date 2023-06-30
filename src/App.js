@@ -8,6 +8,8 @@ import {
   Help,
   Register,
   Admin,
+  Cartpayment,
+  Order,
 } from "./pages";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import { Footer, Header } from "./components";
@@ -39,11 +41,13 @@ const appRouter = createBrowserRouter([
       { path: "/cart", element: <Cart /> },
       { path: "/admin", element: <Admin /> },
       { path: "/help", element: <Help /> },
+      { path: "/order", element: <Order /> },
       { path: "/restaurant/:resId", element: <RestaurantMenu /> },
     ],
   },
   { path: "/login", element: <Login /> },
   { path: "/register", element: <Register /> },
+  { path: "/payment", element: <Cartpayment /> },
 ]);
 
 const App = () => {

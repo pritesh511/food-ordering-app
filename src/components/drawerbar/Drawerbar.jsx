@@ -66,10 +66,10 @@ const Drawerbar = (props) => {
             </Link>
           </li>
           <li className="drawer-menu-item" onClick={() => onClose()}>
-            <Link to="/">
+            <NavLink to="/order" activeclassname="active">
               <DribbbleOutlined />
               <span>My Orders</span>
-            </Link>
+            </NavLink>
           </li>
           <li className="drawer-menu-item" onClick={() => onClose()}>
             <NavLink to="/help" activeclassname="active">

@@ -10,6 +10,8 @@
 6. react-redux
 7. redux-toolkit
 8. parcel-bundler
+9. Stripe(Payment)
+10. Redux-persists
 
 ## What is best in project
 
