@@ -2,10 +2,17 @@ import React from "react";
 import "./checkoutForm.css";
 import { ElementsConsumer, PaymentElement } from "@stripe/react-stripe-js";
 import { useNavigate } from "react-router-dom";
+import { setCurrentOrder } from "../../redux/slices/orderslice";
+import { setEmptyCart } from "../../redux/slices/cartslice";
+import { useDispatch, useSelector } from "react-redux";
 
 const CardSection = (props) => {
-  const navigate = useNavigate();
   const { stripe, elements } = props;
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const cart_all_items = useSelector((state) => state.cartslice.cart);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -13,6 +20,8 @@ const CardSection = (props) => {
       return;
     }
 
+    dispatch(setCurrentOrder(cart_all_items));
+    dispatch(setEmptyCart());
     navigate("/order");
 
     // const result = await stripe.confirmPayment({
