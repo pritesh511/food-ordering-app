@@ -3,9 +3,12 @@ import "./body.css";
 import Rescard from "../rescard/Rescard";
 import { RES_API_URL } from "../../utils/constant";
 import RescardSkelton from "../rescardSkelton/RescardSkelton";
+import { useDispatch } from "react-redux";
+import { setRestaurant } from "../../redux/slices/restslice";
 
 const Body = () => {
   const [reslist, setReslist] = useState([]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     fetchData();
@@ -15,6 +18,7 @@ const Body = () => {
     const resdata = await fetch(RES_API_URL);
     const resjson = await resdata.json();
     setReslist(resjson?.data?.cards[2]?.data?.data?.cards);
+    dispatch(setRestaurant(resjson?.data?.cards[2]?.data?.data?.cards));
   };
 
   return reslist.length === 0 ? (

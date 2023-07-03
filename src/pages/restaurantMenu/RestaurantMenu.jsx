@@ -74,7 +74,16 @@ const RestaurantMenu = () => {
                     ></div>
                   </div>
                   <h3>{item?.card?.info?.name}</h3>
-                  <p>₹{item?.card?.info?.price / 100}</p>
+                  <p>
+                    ₹
+                    {Math.trunc(
+                      parseInt(
+                        (item?.card?.info?.price
+                          ? item?.card?.info?.price
+                          : item?.card?.info?.defaultPrice) / 100
+                      )
+                    )}
+                  </p>
                 </div>
                 <div className="food-img">
                   <img

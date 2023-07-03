@@ -175,6 +175,7 @@
   cursor: pointer;
   border-radius: 6px;
   border: none;
+  transition: all 300ms;
 }
 .place-order-button:hover {
   background-color: var(--dark-yellow-color);

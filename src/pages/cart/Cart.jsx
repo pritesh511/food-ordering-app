@@ -20,7 +20,7 @@ const Cart = () => {
   const delivery_fee = currentRestaurant?.feeDetails?.totalFee / 100;
   const order_total = cart_item.reduce(
     (a, item) =>
-      a + (item?.qty * item?.price ? item?.price : item?.defaultPrice) / 100,
+      a + (item?.qty * (item?.price ? item?.price : item?.defaultPrice)) / 100,
     0
   );
   const pay_amount = delivery_fee + order_total;
