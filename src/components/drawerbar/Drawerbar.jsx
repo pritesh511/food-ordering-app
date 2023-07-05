@@ -48,19 +48,13 @@ const Drawerbar = (props) => {
             </NavLink>
           </li>
           <li className="drawer-menu-item" onClick={() => onClose()}>
-            <Link to="/">
-              <UserOutlined />
-              <span>Profile</span>
-            </Link>
-          </li>
-          <li className="drawer-menu-item" onClick={() => onClose()}>
-            <Link to="/">
+            <Link to="/offer">
               <RadarChartOutlined />
               <span>Offers</span>
             </Link>
           </li>
           <li className="drawer-menu-item" onClick={() => onClose()}>
-            <Link to="/">
+            <Link to="/setting">
               <SettingOutlined />
               <span>Setting</span>
             </Link>

@@ -10,6 +10,8 @@ import {
   Admin,
   Cartpayment,
   Order,
+  Offer,
+  Setting,
 } from "./pages";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import { Footer, Header } from "./components";
@@ -42,6 +44,8 @@ const appRouter = createBrowserRouter([
       { path: "/admin", element: <Admin /> },
       { path: "/help", element: <Help /> },
       { path: "/order", element: <Order /> },
+      { path: "/offer", element: <Offer /> },
+      { path: "/setting", element: <Setting /> },
       { path: "/restaurant/:resId", element: <RestaurantMenu /> },
       { path: "/search/restaurant/:resId", element: <RestaurantMenu /> },
     ],

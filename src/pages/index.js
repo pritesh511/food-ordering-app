@@ -8,6 +8,8 @@ import Register from "./register/Register";
 import Admin from "./admin/Admin";
 import Cartpayment from "./payment/Cartpayment";
 import Order from "./order/Order";
+import Offer from "./offer/Offer";
+import Setting from "./setting/Setting";
 
 export {
   Home,
@@ -20,4 +22,6 @@ export {
   Admin,
   Cartpayment,
   Order,
+  Offer,
+  Setting,
 };

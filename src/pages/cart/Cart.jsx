@@ -27,12 +27,7 @@ const Cart = () => {
   const { cloudinaryImageId, name, city } = currentRestaurant;
 
   const handlePlaceOrder = () => {
-    console.log("call");
-    if (current_login_user === null) {
-      navigate("/login");
-    } else {
-      navigate("/payment");
-    }
+    navigate("/payment");
   };
 
   return cart_item.length <= 0 ? (

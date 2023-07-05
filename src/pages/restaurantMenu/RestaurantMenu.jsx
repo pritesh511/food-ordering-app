@@ -12,13 +12,18 @@ import {
   setCurremtRestaurant,
   removeFromcart,
 } from "../../redux/slices/cartslice";
+import { useNavigate } from "react-router-dom";
 
 const RestaurantMenu = () => {
   const [resMenuData, setResMenuData] = useState(null);
   const params = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const cart_Item = useSelector((state) => state.cartslice.cart);
+  const is_login_user = useSelector(
+    (state) => state.userslice.currentLoginUser
+  );
 
   const { resId } = params;
 
@@ -35,6 +40,15 @@ const RestaurantMenu = () => {
   if (resMenuData === null) return <MenuSkelton />;
 
   const resData = resMenuData?.data?.cards[0].card.card.info;
+
+  const handleCart = (item) => {
+    if (is_login_user) {
+      dispatch(addTocart(item?.card?.info));
+      dispatch(setCurremtRestaurant(resData));
+    } else {
+      navigate("/login");
+    }
+  };
 
   const food_item =
     resMenuData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards
@@ -114,10 +128,7 @@ const RestaurantMenu = () => {
                   ) : (
                     <div
                       className="add-item-button"
-                      onClick={() => {
-                        dispatch(addTocart(item?.card?.info));
-                        dispatch(setCurremtRestaurant(resData));
-                      }}
+                      onClick={() => handleCart(item)}
                     >
                       Add Item
                     </div>
