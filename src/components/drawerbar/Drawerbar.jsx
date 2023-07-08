@@ -14,6 +14,8 @@ import {
   LogoutOutlined,
 } from "@ant-design/icons";
 import { logout } from "../../redux/slices/userslice";
+import { setEmptyCart } from "../../redux/slices/cartslice";
+import { setEmptyCurrentOrder } from "../../redux/slices/orderslice";
 
 const Drawerbar = (props) => {
   const { openDrawer, onClose } = props;
@@ -74,7 +76,10 @@ const Drawerbar = (props) => {
           <li
             className="drawer-menu-item"
             onClick={() => {
-              onClose(), dispatch(logout());
+              onClose(),
+                dispatch(logout()),
+                dispatch(setEmptyCart()),
+                dispatch(setEmptyCurrentOrder());
             }}
           >
             <Link to="/">
