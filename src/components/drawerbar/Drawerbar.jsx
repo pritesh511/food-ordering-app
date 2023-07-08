@@ -34,7 +34,7 @@ const Drawerbar = (props) => {
           <div className="avtar">{currentUser?.name[0].toUpperCase()}</div>
           <p className="drawer-name">{currentUser?.name}</p>
         </div>
-        <ul className="drawer-menu-list">
+        <ul className="drawer-menu-list" data-testid="nav-link-list">
           <li className="drawer-menu-item" onClick={() => onClose()}>
             <NavLink to="/" activeclassname="active">
               <HomeOutlined />

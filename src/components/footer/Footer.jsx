@@ -17,7 +17,7 @@ const Footer = () => {
           <p style={{ margin: 0 }}>
             Copyright © {new Date().getFullYear()} foodie
           </p>
-          <ul className="social-icon-list">
+          <ul className="social-icon-list" data-testid="social-icon-list">
             <li className="social-icon">
               <InstagramFilled />
             </li>

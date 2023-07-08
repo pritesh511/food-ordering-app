@@ -38,7 +38,7 @@ const Header = () => {
                 <img src={LOGO_URL} alt="app-logo" />
               </NavLink>
             </div>
-            <ul className="nav-list">
+            <ul className="nav-list" data-testid="nav-link">
               <li className="nav-item">
                 <NavLink to="/search" activeclassname="active">
                   <SearchOutlined />

@@ -9,7 +9,7 @@ const EmptyCart = () => {
       <div className="empty-card-icon">
         <ShoppingCartOutlined />
       </div>
-      <p className="empty-cart-para">
+      <p className="empty-cart-para" data-testid="cart-para">
         Your cart has been empty please add items in cart for order
       </p>
       <Link className="empty-cart-button" to="/">
