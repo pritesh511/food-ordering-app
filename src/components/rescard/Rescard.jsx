@@ -17,7 +17,7 @@ const Rescard = (props) => {
     costForTwoString,
   } = resdata.data;
   return (
-    <Link className="cardLink" to={`restaurant/${id}`} data-testid="rescard">
+    <Link className="cardLink" to={`restaurant/${id}`}>
       <Card
         hoverable
         style={{ width: 300 }}
@@ -29,7 +29,9 @@ const Rescard = (props) => {
           />
         }
       >
-        <h2 className="res-name">{name}</h2>
+        <h2 className="res-name" data-testid="rescard-name">
+          {name}
+        </h2>
         <p className="res-item-name">{cuisines.join(", ")}</p>
         <div className="res-detail">
           <div className="res-rating">

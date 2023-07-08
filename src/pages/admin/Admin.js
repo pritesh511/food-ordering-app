@@ -22,7 +22,7 @@ const Admin = () => {
             <th className="admin-th"></th>
           </tr>
         </thead>
-        <tbody className="admin-tbody">
+        <tbody className="admin-tbody" data-testid="user-login-list">
           {register_data?.map((user, index) => {
             return (
               <tr key={user?.id}>
@@ -32,6 +32,7 @@ const Admin = () => {
                 <td className="admin-td">
                   <DeleteOutlined
                     className="delete-user"
+                    data-testid="delete-user-btn"
                     onClick={() => dispatch(deleteUser(user))}
                   />
                 </td>
