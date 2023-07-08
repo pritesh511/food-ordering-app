@@ -17,7 +17,7 @@ const Rescard = (props) => {
     costForTwoString,
   } = resdata.data;
   return (
-    <Link className="cardLink" to={`restaurant/${id}`}>
+    <Link className="cardLink" to={`restaurant/${id}`} data-testid="rescard">
       <Card
         hoverable
         style={{ width: 300 }}
@@ -34,7 +34,7 @@ const Rescard = (props) => {
         <div className="res-detail">
           <div className="res-rating">
             <StarFilled />
-            <span>{avgRating ? avgRating : 4}</span>
+            <span>{avgRating}</span>
           </div>
           <p className="delivery-time">{slaString}</p>
           <p className="delivery-time">{costForTwoString}</p>
