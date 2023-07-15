@@ -20,6 +20,7 @@ const Login = () => {
 
   const loginSchema = Yup.object({
     email: Yup.string()
+      .trim()
       .matches(
         /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
         "Please enter valid email"
@@ -72,7 +73,7 @@ const Login = () => {
               <input
                 className="form-input"
                 placeholder="Enter your email"
-                type="text"
+                type="email"
                 name="email"
                 autoComplete="off"
                 value={values?.email}
@@ -87,7 +88,7 @@ const Login = () => {
               <label className="input-label">Password:</label>
               <input
                 className="form-input"
-                type="text"
+                type="password"
                 autoComplete="off"
                 placeholder="Enter your password"
                 name="password"

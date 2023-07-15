@@ -31,16 +31,32 @@ const Drawerbar = (props) => {
         open={openDrawer}
         key="right"
       >
-        <div className="top-menu">
-          {/* <img src="" alt="avtar-image" /> */}
-          <div className="avtar">{currentUser?.name[0].toUpperCase()}</div>
-          <p className="drawer-name">{currentUser?.name}</p>
-        </div>
+        {currentUser && (
+          <div className="top-menu">
+            {/* <img src="" alt="avtar-image" /> */}
+            <div className="avtar">{currentUser?.name[0].toUpperCase()}</div>
+            <p className="drawer-name">{currentUser?.name}</p>
+          </div>
+        )}
         <ul className="drawer-menu-list" data-testid="nav-link-list">
           <li className="drawer-menu-item" onClick={() => onClose()}>
             <NavLink to="/" activeclassname="active">
               <HomeOutlined />
               <span>Dashboard</span>
+            </NavLink>
+          </li>
+          {!currentUser && (
+            <li className="drawer-menu-item" onClick={() => onClose()}>
+              <NavLink to="/login" activeclassname="active">
+                <HomeOutlined />
+                <span>Login</span>
+              </NavLink>
+            </li>
+          )}
+          <li className="drawer-menu-item" onClick={() => onClose()}>
+            <NavLink to="/cart" activeclassname="active">
+              <HomeOutlined />
+              <span>Cart</span>
             </NavLink>
           </li>
           <li className="drawer-menu-item" onClick={() => onClose()}>
@@ -73,20 +89,22 @@ const Drawerbar = (props) => {
               <span>Help & Faq</span>
             </NavLink>
           </li>
-          <li
-            className="drawer-menu-item"
-            onClick={() => {
-              onClose(),
-                dispatch(logout()),
-                dispatch(setEmptyCart()),
-                dispatch(setEmptyCurrentOrder());
-            }}
-          >
-            <Link to="/">
-              <LogoutOutlined />
-              <span>Logout</span>
-            </Link>
-          </li>
+          {currentUser && (
+            <li
+              className="drawer-menu-item"
+              onClick={() => {
+                onClose(),
+                  dispatch(logout()),
+                  dispatch(setEmptyCart()),
+                  dispatch(setEmptyCurrentOrder());
+              }}
+            >
+              <Link to="/">
+                <LogoutOutlined />
+                <span>Logout</span>
+              </Link>
+            </li>
+          )}
         </ul>
         <div className="menu-bottom">
           <div className="drawerbar-small">

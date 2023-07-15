@@ -6,6 +6,7 @@ import {
   UserOutlined,
   ShoppingCartOutlined,
   GlobalOutlined,
+  MenuOutlined,
 } from "@ant-design/icons";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -75,6 +76,10 @@ const Header = () => {
                 </li>
               )}
             </ul>
+            <MenuOutlined
+              onClick={() => showDrawer()}
+              className="humburger-menu"
+            />
           </div>
         </div>
       </div>

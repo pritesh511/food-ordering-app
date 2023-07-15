@@ -83,3 +83,17 @@
   background-color: var(--yellow-color);
   color: var(--white-color);
 }
+.humburger-menu {
+  display: none;
+}
+
+/* Media query for phone (479)*/
+
+@media only screen and (max-width: 479px) {
+  .humburger-menu {
+    display: block;
+  }
+  .nav-list {
+    display: none;
+  }
+}

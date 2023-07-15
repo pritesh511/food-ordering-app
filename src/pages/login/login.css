@@ -106,3 +106,11 @@
   color: var(--red-color);
   font-size: 16px;
 }
+
+/* Media query for tablet (768)*/
+
+@media only screen and (max-width: 768px) {
+  .banner-block {
+    display: none;
+  }
+}

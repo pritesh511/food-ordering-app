@@ -36,12 +36,14 @@ const Register = () => {
       )
       .required("Please enter email"),
     password: Yup.string()
+      .trim()
       .matches(
         /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/,
         "Password contain minimum eight characters, at least one letter and one number"
       )
       .required("Please enter password"),
     confirm_password: Yup.string()
+      .trim()
       .oneOf([Yup.ref("password"), null], "Passwords must match")
       .required("Please enter confirm password"),
   });
@@ -115,7 +117,7 @@ const Register = () => {
               <input
                 className="form-input"
                 placeholder="Enter your password"
-                type="text"
+                type="password"
                 name="password"
                 value={values?.password}
                 onChange={handleChange}
@@ -130,7 +132,7 @@ const Register = () => {
               <input
                 className="form-input"
                 placeholder="Enter your confirm password"
-                type="text"
+                type="password"
                 name="confirm_password"
                 value={values?.confirm_password}
                 onChange={handleChange}
