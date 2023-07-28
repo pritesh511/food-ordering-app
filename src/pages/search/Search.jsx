@@ -14,7 +14,7 @@ const Search = () => {
   useEffect(() => {
     setTimeout(() => {
       const filterRestaurant = allResData.filter((res) =>
-        res?.data?.name.toLowerCase().includes(searchRes.toLowerCase())
+        res?.info?.name.toLowerCase().includes(searchRes.toLowerCase())
       );
       setFilterRes(filterRestaurant);
       setLoading(false);
@@ -48,7 +48,7 @@ const Search = () => {
       {!loading && searchRes.length > 0 && (
         <div className="res-container">
           {filterRes?.map((res) => {
-            return <Rescard resdata={res} key={res.data.id} />;
+            return <Rescard resdata={res} key={res.info.id} />;
           })}
         </div>
       )}

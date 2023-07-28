@@ -17,8 +17,21 @@ const Body = () => {
   const fetchData = async () => {
     const resdata = await fetch(RES_API_URL);
     const resjson = await resdata.json();
-    setReslist(resjson?.data?.cards[2]?.data?.data?.cards);
-    dispatch(setRestaurant(resjson?.data?.cards[2]?.data?.data?.cards));
+    console.log(
+      "resjson",
+      resjson?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants
+    );
+    setReslist(
+      resjson?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants
+    );
+    dispatch(
+      setRestaurant(
+        resjson?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants
+      )
+    );
   };
 
   return reslist.length === 0 ? (
@@ -28,7 +41,7 @@ const Body = () => {
       <div className="container">
         <div className="res-container">
           {reslist.map((res) => {
-            return <Rescard resdata={res} key={res.data.id} />;
+            return <Rescard resdata={res} key={res.info.id} />;
           })}
         </div>
       </div>

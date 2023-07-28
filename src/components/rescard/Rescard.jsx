@@ -7,15 +7,8 @@ import { Link } from "react-router-dom";
 
 const Rescard = (props) => {
   const { resdata } = props;
-  const {
-    avgRating,
-    cloudinaryImageId,
-    slaString,
-    name,
-    id,
-    cuisines,
-    costForTwoString,
-  } = resdata.data;
+  const { avgRating, cloudinaryImageId, sla, name, id, cuisines, costForTwo } =
+    resdata.info;
   return (
     <Link className="cardLink" to={`restaurant/${id}`}>
       <Card
@@ -38,8 +31,8 @@ const Rescard = (props) => {
             <StarFilled />
             <span>{avgRating}</span>
           </div>
-          <p className="delivery-time">{slaString}</p>
-          <p className="delivery-time">{costForTwoString}</p>
+          <p className="delivery-time">{sla?.slaString}</p>
+          <p className="delivery-time">{costForTwo}</p>
         </div>
       </Card>
     </Link>
