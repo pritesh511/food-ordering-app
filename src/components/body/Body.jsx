@@ -17,11 +17,6 @@ const Body = () => {
   const fetchData = async () => {
     const resdata = await fetch(RES_API_URL);
     const resjson = await resdata.json();
-    console.log(
-      "resjson",
-      resjson?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants
-    );
     setReslist(
       resjson?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants
