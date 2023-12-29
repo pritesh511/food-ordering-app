@@ -18,7 +18,7 @@ const Body = () => {
     const resdata = await fetch(RES_API_URL);
     const resjson = await resdata.json();
     setReslist(
-      resjson?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle
+      resjson?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants
     );
     dispatch(
