@@ -32,7 +32,9 @@ const RestaurantMenu = () => {
   }, []);
 
   const fetchResMenuData = async () => {
-    const data = await fetch(`${RES_MENU_API}&restaurantId=${resId}`);
+    const data = await fetch(`${RES_MENU_API}&restaurantId=${resId}`, {
+      method: "GET", 
+    });
     const json = await data.json();
     setResMenuData(json);
   };

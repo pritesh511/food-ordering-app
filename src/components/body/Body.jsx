@@ -5,6 +5,7 @@ import { RES_API_URL } from "../../utils/constant";
 import RescardSkelton from "../rescardSkelton/RescardSkelton";
 import { useDispatch } from "react-redux";
 import { setRestaurant } from "../../redux/slices/restslice";
+import { restaurantList } from "../../utils/restMockData";
 
 const Body = () => {
   const [reslist, setReslist] = useState([]);
@@ -15,17 +16,29 @@ const Body = () => {
   }, []);
 
   const fetchData = async () => {
-    const resdata = await fetch(RES_API_URL);
-    const resjson = await resdata.json();
-    setReslist(
-      resjson?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants
-    );
-    dispatch(
-      setRestaurant(
-        resjson?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle
-          ?.restaurants
-      )
+    // const resdata = await fetch(RES_API_URL, {
+    //   headers: {
+    //     "Access-Control-Allow-Origin": "*"
+    //   }
+    // });
+    // const resjson = await resdata.json();
+
+    // setReslist(
+    //   resjson?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+    //     ?.restaurants
+    // );
+    // dispatch(
+    //   setRestaurant(
+    //     resjson?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+    //       ?.restaurants
+    //   )
+    // );
+    setTimeout(
+      (r) => {
+        setReslist(restaurantList);
+        dispatch(setRestaurant(restaurantList));
+      },
+      1000
     );
   };
 
