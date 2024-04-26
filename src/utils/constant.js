@@ -11,8 +11,8 @@ export const RES_API_URL = API_URl
 "https://thingproxy.freeboard.io/fetch/https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.1702401&lng=72.83106070000001&page_type=DESKTOP_WEB_LISTING"
 // "https://api.allorigins.win/get?url=" + encodeURIComponent("https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.1702401&lng=72.83106070000001&page_type=DESKTOP_WEB_LISTING")
 
-export const RES_MENU_API =
-  "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=21.18880&lng=72.82930catalog_qa=undefined&isMenuUx4=true&submitAction=ENTER";
+export const RES_MENU_API = "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=21.2610616&lng=72.83677759999999&restaurantId=175281&catalog_qa=undefined&isMenuUx4=true&submitAction=ENTER"
+  // "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=21.18880&lng=72.82930catalog_qa=undefined&isMenuUx4=true&submitAction=ENTER";
 // "https://thingproxy.freeboard.io/fetch" +
 // encodeURIComponent(
 //   "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=21.1702401&lng=72.83106070000001"
