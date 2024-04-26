@@ -13,6 +13,7 @@ import {
   removeFromcart,
 } from "../../redux/slices/cartslice";
 import { useNavigate } from "react-router-dom";
+import { jsonData } from "../../utils/resMenuData/jalaramLocho";
 
 const RestaurantMenu = () => {
   const [resMenuData, setResMenuData] = useState(null);
@@ -32,16 +33,18 @@ const RestaurantMenu = () => {
   }, []);
 
   const fetchResMenuData = async () => {
-    const data = await fetch(`${RES_MENU_API}&restaurantId=${resId}`, {
-      method: "GET", 
-    });
-    const json = await data.json();
-    setResMenuData(json);
+    // const data = await fetch(`${RES_MENU_API}&restaurantId=${resId}`, {
+    //   method: "GET",
+    // });
+    // const json = await data.json();
+    setTimeout(() => {
+      setResMenuData(jsonData);
+    }, 1500);
   };
 
   if (resMenuData === null) return <MenuSkelton />;
 
-  const resData = resMenuData?.data?.cards[0].card.card.info;
+  const resData = resMenuData?.data?.cards[2].card.card.info;
 
   const handleCart = (item) => {
     if (is_login_user) {
@@ -53,7 +56,7 @@ const RestaurantMenu = () => {
   };
 
   const food_item =
-    resMenuData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards
+    resMenuData?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards
       .filter((item) => item?.card?.card?.itemCards !== undefined)
       .map((item, index) => {
         return {
