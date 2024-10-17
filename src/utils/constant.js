@@ -17,3 +17,5 @@ export const RES_MENU_API = "https://www.swiggy.com/dapi/menu/pl?page-type=REGUL
 // encodeURIComponent(
 //   "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=21.1702401&lng=72.83106070000001"
 // );
+
+export const GOOGLE_SEARCH_API = "http://suggestqueries.google.com/complete/search?client=firefox&q="

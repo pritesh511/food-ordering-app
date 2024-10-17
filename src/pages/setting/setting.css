@@ -1,0 +1,25 @@
+.setting-wrapper {
+    max-width: 500px;
+    width: 100%;
+    margin: auto;
+    position: relative;
+}
+.setting-input {
+    width: 100%;
+    padding: 12px 18px;
+}
+.suggestion-list {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    background-color: white;
+}
+.suggestion-item {
+    padding: 12px;
+    cursor: pointer;
+}
+.suggestion-item:hover {
+    background-color: gray;
+    color: white;
+}
