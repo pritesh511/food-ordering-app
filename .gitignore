@@ -3,3 +3,4 @@
 /.parcel-cache
 /.cache
 /coverage
+/yarn.lock
