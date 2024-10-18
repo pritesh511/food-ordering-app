@@ -1,7 +1,6 @@
 .setting-wrapper {
     max-width: 500px;
     width: 100%;
-    margin: auto;
     position: relative;
 }
 .setting-input {
@@ -22,4 +21,10 @@
 .suggestion-item:hover {
     background-color: gray;
     color: white;
+}
+.setting-main-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
 }

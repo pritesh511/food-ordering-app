@@ -2,6 +2,7 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import cartslice from "./slices/cartslice";
 import userslice from "./slices/userslice";
 import orderslice from "./slices/orderslice";
+import searchCacheSlice from "./slices/searchCacheSlice";
 import storage from "redux-persist/lib/storage";
 import { persistReducer, persistStore } from "redux-persist";
 import thunk from "redux-thunk";
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   userslice: userslice,
   orderslice: orderslice,
   restslice: restslice,
+  searchCacheSlice: searchCacheSlice
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
