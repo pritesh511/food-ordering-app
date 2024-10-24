@@ -14,6 +14,8 @@ import {
 } from "../../redux/slices/cartslice";
 import { useNavigate } from "react-router-dom";
 import { jsonData } from "../../utils/resMenuData/jalaramLocho";
+import { Comment, CommentList } from "../../components";
+import { rescomments } from "../../utils/commentMockData";
 
 const RestaurantMenu = () => {
   const [resMenuData, setResMenuData] = useState(null);
@@ -168,6 +170,10 @@ const RestaurantMenu = () => {
           items={items}
           expandIconPosition="end"
         />
+      </div>
+      <h3>Customer Review</h3>
+      <div className="comment-main-wrapper">
+        <CommentList commentData={rescomments}/>
       </div>
     </div>
   );

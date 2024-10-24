@@ -46,6 +46,15 @@
   background-color: var(--dark-white);
   padding: 10px;
 }
+.comment-main-wrapper {
+  background-color: var(--dark-white);
+  border-radius: 8px;
+}
+.nested-comment {
+  padding: 0 0 0 12px;
+  border-left: 1px solid var(--dark-color);
+  margin: 0 0 0 8px;
+}
 .ant-collapse-header {
   padding: 20px 12px !important;
 }

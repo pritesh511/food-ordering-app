@@ -6,6 +6,8 @@ import MenuSkelton from "./menuSkelton/MenuSkelton";
 import EmptyCart from "./emptycart/EmptyCart";
 import FaqAccordian from "./faqAccordian/FaqAccordian";
 import LegalAccordian from "./faqAccordian/LegalAccordian";
+import Comment from "./comment/Comment";
+import CommentList from "./commentList/CommentList";
 
 export {
   Header,
@@ -16,4 +18,6 @@ export {
   EmptyCart,
   FaqAccordian,
   LegalAccordian,
+  Comment,
+  CommentList
 };
