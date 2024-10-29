@@ -2,6 +2,10 @@
     display: flex;
     align-items: center;
     gap: 10px;
+    margin: 6px 0;
+    background-color: var(--white-color);
+    padding: 4px 6px;
+    border-radius: 8px;
 }
 .message-name {
     font-weight: bold;

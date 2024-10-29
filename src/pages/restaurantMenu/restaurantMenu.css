@@ -194,4 +194,16 @@
   padding: 8px 12px;
   border-radius: 8px;
   height: 500px;
+  overflow: auto;
+}
+.chat-message-clear {
+  width: 100%;
+  padding: 8px 12px;
+  text-align: center;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  margin: 8px 0;
+  cursor: pointer;
+  background-color: var(--dark-white);
 }

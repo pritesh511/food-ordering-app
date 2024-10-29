@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Collapse } from "antd";
+import { Collapse, message } from "antd";
 import { RES_MENU_API } from "../../utils/constant";
 import { useParams } from "react-router";
 import { StarFilled } from "@ant-design/icons";
@@ -16,6 +16,10 @@ import { useNavigate } from "react-router-dom";
 import { jsonData } from "../../utils/resMenuData/jalaramLocho";
 import { ChatMessage, Comment, CommentList } from "../../components";
 import { rescomments } from "../../utils/commentMockData";
+import {
+  addChatMessage,
+  removeChatMessage,
+} from "../../redux/slices/chatMessageSlice";
 
 const RestaurantMenu = () => {
   const [resMenuData, setResMenuData] = useState(null);
@@ -24,14 +28,30 @@ const RestaurantMenu = () => {
   const navigate = useNavigate();
 
   const cart_Item = useSelector((state) => state.cartslice.cart);
+
+  const chatMessageList = useSelector((state) => state.chatmessage.messages);
+
   const is_login_user = useSelector(
     (state) => state.userslice.currentLoginUser
   );
 
-  const { resId } = params;
-
   useEffect(() => {
     fetchResMenuData();
+
+    // set interval for chat message API polling
+    const chatInterval = setInterval(() => {
+      dispatch(
+        addChatMessage({
+          name: "Pritesh Makasana",
+          message: "This is a best restuarant in surat.",
+        })
+      );
+    }, 5000);
+
+    () => {
+      clearInterval(chatInterval);
+      dispatch(removeChatMessage());
+    };
   }, []);
 
   const fetchResMenuData = async () => {
@@ -179,8 +199,16 @@ const RestaurantMenu = () => {
       </div>
       <div className="chat-box-wrapper">
         <div className="chat-box-wrap">
-          <ChatMessage name="Pritesh Makasana" message="This restaurant is one of the best in surat."/>
+          {chatMessageList.map((chat) => (
+            <ChatMessage name={chat.name} message={chat.message} />
+          ))}
         </div>
+        <button
+          className="chat-message-clear"
+          onClick={() => dispatch(removeChatMessage())}
+        >
+          Clear Chat
+        </button>
       </div>
     </div>
   );
