@@ -21,22 +21,27 @@ const MenuSkelton = () => {
     },
   ];
   return (
-    <div className="resmenu-container">
-      <div className="res-menu-header">
-        <div className="res-header-left">
-          <Skeleton active={true} />
+    <div className="resmenu-main-wrapper">
+      <div className="resmenu-container">
+        <div className="res-menu-header">
+          <div className="res-header-left">
+            <Skeleton active={true} />
+          </div>
+          <div className="res-header-right">
+            <Skeleton.Button active={true} />
+          </div>
         </div>
-        <div className="res-header-right">
-          <Skeleton.Button active={true} />
+        <div className="res-menu-container">
+          <Collapse
+            defaultActiveKey={["1"]}
+            expandIconPosition="end"
+            ghost
+            items={items}
+          />
         </div>
       </div>
-      <div className="res-menu-container">
-        <Collapse
-          defaultActiveKey={["1"]}
-          expandIconPosition="end"
-          ghost
-          items={items}
-        />
+      <div className="chat-box-wrapper">
+        <Skeleton active={true} />
       </div>
     </div>
   );

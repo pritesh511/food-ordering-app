@@ -1,7 +1,6 @@
 .resmenu-container {
-  max-width: 1032px;
+  flex: 1 1 0;
   width: 100%;
-  margin: auto;
   padding: 0 16px;
 }
 .res-menu-header {
@@ -179,4 +178,20 @@
   font-size: 14px;
   color: var(--dark-color);
   font-weight: 500;
+}
+.resmenu-main-wrapper {
+  display: flex;
+  align-items: flex-start;
+}
+.chat-box-wrapper {
+  max-width: 350px;
+  width: 100%;
+  margin: 0 8px;
+}
+.chat-box-wrap {
+  width: 100%;
+  background-color: var(--dark-white);
+  padding: 8px 12px;
+  border-radius: 8px;
+  height: 500px;
 }

@@ -1,0 +1,9 @@
+.message-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.message-name {
+    font-weight: bold;
+    margin: 0 4px 0 0;
+}

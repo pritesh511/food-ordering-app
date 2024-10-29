@@ -8,7 +8,8 @@ import FaqAccordian from "./faqAccordian/FaqAccordian";
 import LegalAccordian from "./faqAccordian/LegalAccordian";
 import Comment from "./comment/Comment";
 import CommentList from "./commentList/CommentList";
-
+import ChatMessage from "./chatMessage/ChatMessage";
+ 
 export {
   Header,
   Footer,
@@ -19,5 +20,6 @@ export {
   FaqAccordian,
   LegalAccordian,
   Comment,
-  CommentList
+  CommentList,
+  ChatMessage
 };

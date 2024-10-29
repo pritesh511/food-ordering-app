@@ -14,7 +14,7 @@ import {
 } from "../../redux/slices/cartslice";
 import { useNavigate } from "react-router-dom";
 import { jsonData } from "../../utils/resMenuData/jalaramLocho";
-import { Comment, CommentList } from "../../components";
+import { ChatMessage, Comment, CommentList } from "../../components";
 import { rescomments } from "../../utils/commentMockData";
 
 const RestaurantMenu = () => {
@@ -150,30 +150,37 @@ const RestaurantMenu = () => {
   const items = food_item;
 
   return (
-    <div className="resmenu-container">
-      <div className="res-menu-header">
-        <div className="res-header-left">
-          <h2>{resData?.name}</h2>
-          <p>{resData?.labels[1].message}</p>
-        </div>
-        <div className="res-header-right">
-          <div className="res-header-rating">
-            <StarFilled />
-            <span>{resData?.avgRating}</span>
+    <div className="resmenu-main-wrapper">
+      <div className="resmenu-container">
+        <div className="res-menu-header">
+          <div className="res-header-left">
+            <h2>{resData?.name}</h2>
+            <p>{resData?.labels[1].message}</p>
+          </div>
+          <div className="res-header-right">
+            <div className="res-header-rating">
+              <StarFilled />
+              <span>{resData?.avgRating}</span>
+            </div>
           </div>
         </div>
+        <div className="res-menu-container">
+          <Collapse
+            defaultActiveKey={["1"]}
+            ghost
+            items={items}
+            expandIconPosition="end"
+          />
+        </div>
+        <h3>Customer Review</h3>
+        <div className="comment-main-wrapper">
+          <CommentList commentData={rescomments} />
+        </div>
       </div>
-      <div className="res-menu-container">
-        <Collapse
-          defaultActiveKey={["1"]}
-          ghost
-          items={items}
-          expandIconPosition="end"
-        />
-      </div>
-      <h3>Customer Review</h3>
-      <div className="comment-main-wrapper">
-        <CommentList commentData={rescomments}/>
+      <div className="chat-box-wrapper">
+        <div className="chat-box-wrap">
+          <ChatMessage name="Pritesh Makasana" message="This restaurant is one of the best in surat."/>
+        </div>
       </div>
     </div>
   );
